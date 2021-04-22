@@ -1,5 +1,7 @@
 import '../App.css';
+import TableContainer from './TableContainer';
 import React from 'react';
+
 
 
 
@@ -12,8 +14,11 @@ const styles = {
 function Wrapper() {
 
     return (
+        
         <div style={styles}>
-{"Hello"}
+
+
+<TableContainer />
 
         </div>
     )
