@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import API from '../utils/API';
+import SearchForm from './SearchForm';
 import Table from './Table';
 
 const style = {
@@ -45,12 +46,64 @@ class TableContainer extends Component {
 
     }
 
+    handleInputChange = (event) => {
+        const { name, value } = event.target;
+
+        this.setState({
+            [name]: value
+        })
+    }
+
+    handleFormSubmit = (event) => {
+        event.preventDefault();
+
+        this.setState({
+            displayRows: this.state.employeeData.filter(row => {
+                return (row.name.includes(this.state.searchString))
+            })
+        })
+    }
+
+    handleSort = event => {
+        event.preventDefault();
+
+        this.setState({
+            displayRows: this.state.displayRows.sort((rowA, rowB) => {
+
+                const nameA = rowA.name.toLowerCase();
+                const nameB = rowB.name.toLowerCase();
+
+                if (nameA < nameB) return -1;
+                if (nameA > nameB) return 1;
+                return 0;
+            })
+        })
+    }
+
+    handleFormReset = (event) => {
+        event.preventDefault();
+
+        this.setState({
+            searchString: "",
+            displayRows: this.state.employeeData
+        }
+        )
+    }
+
+    componentDidMount() {
+        this.initialize();
+    }
 
     render() {
 
         return (
             <div style={style}>
-
+                <SearchForm
+                searchString={this.state.searchString}
+                handleInputChange={this.handleInputChange}
+                handleFormSubmit={this.handleFormSubmit}
+                handleSort={this.handle}
+                handleFormReset={this.handleFormReset} />
 
                 <Table rows={this.state.displayRows} />
             </div>
@@ -62,7 +115,5 @@ class TableContainer extends Component {
 
 
 export default TableContainer;
-
-
 
   
