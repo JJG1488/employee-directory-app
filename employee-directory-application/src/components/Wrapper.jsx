@@ -1,7 +1,7 @@
 import '../App.css';
 import TableContainer from './TableContainer';
 import React from 'react';
-
+import Header from './Header';
 
 
 
@@ -14,9 +14,8 @@ const styles = {
 function Wrapper() {
 
     return (
-        
         <div style={styles}>
-
+<Header />
 
 <TableContainer />
 
