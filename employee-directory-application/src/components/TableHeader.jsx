@@ -11,7 +11,13 @@ function TableHeader(props) {
     return (
         <thead style={style} >
             <tr>
-                
+                {props.fields.map(field => {
+
+                    return (
+                        <th key={Math.random() * 1}>{field}</th>
+                    )
+
+                })}
             </tr>
         </thead>
     )

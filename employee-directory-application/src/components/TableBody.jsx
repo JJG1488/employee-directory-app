@@ -1,5 +1,5 @@
 import React from 'react';
-
+import TableRow from './TableRow';
 
 const style = {
     backgroundColor: "blue"
@@ -8,8 +8,12 @@ const style = {
 
 function TableBody(props) {
     return (
-        <tbody >
-        
+        <tbody style={style}>
+            {props.rows.map((row) => {
+                return (
+                    <TableRow values={row} key={Math.random() * 1}/>
+                )
+            })}
         </tbody>
     )
 }
